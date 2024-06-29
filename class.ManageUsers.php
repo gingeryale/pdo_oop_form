@@ -21,14 +21,26 @@ class ManageUsers{
         return $counts;
     }
 
-    public function loginUser($username,$password){
-        $query=$this->link->query("SELECT * FROM `users` WHERE u_name='$username' AND u_pw='$password'");
+    public function loginUser($email,$password){
+        // $query=$this->link->query("SELECT * FROM `users` WHERE u_name='$username' AND u_pw='$password'");
+        $query=$this->link->query("SELECT * FROM `users` WHERE u_email='$email' AND u_pw='$password'");
         $rowCount=$query->rowCount();
         return $rowCount;
     }
 
     public function getUserData($username){
         $query=$this->link->query("SELECT * FROM `users` WHERE u_name='$username'");
+        $rowCount=$query->rowCount();
+        if($rowCount == 1){
+            $result=$query->fetchAll();
+            return $result;
+        }else{
+            return $rowCount;
+        }
+    }
+
+    public function getExistingUserData($email){
+        $query=$this->link->query("SELECT * FROM `users` WHERE u_email='$email'");
         $rowCount=$query->rowCount();
         if($rowCount == 1){
             $result=$query->fetchAll();
