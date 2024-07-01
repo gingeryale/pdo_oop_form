@@ -12,17 +12,17 @@ class ManageModel{
         return $this->link; 
     }
 
-    function createModel($username,$title,$description,$ddate,$cdate,$status)
+    function createModel($username,$title,$description,$ddate,$cdate,$label)
     {
-       $query = $this->link->prepare('INSERT INTO `model` (m_username,m_title,m_description,m_due_date, m_created_date,m_status) VALUES (?,?,?,?,?,?)');
-       $values = array($username,$title,$description,$ddate,$cdate,$status);
+       $query = $this->link->prepare('INSERT INTO `model` (m_username,m_title,m_description,m_due_date, m_created_date,m_label) VALUES (?,?,?,?,?,?)');
+       $values = array($username,$title,$description,$ddate,$cdate,$label);
        $query->execute($values);
        $counts=$query->rowCount();
        return $counts;
     }
-    function listModel($username,$status)
+    function listModel($username,$label)
     {
-        $query = $this->link->query('SELECT * FROM `model` WHERE m_username="$username" AND m_status="$status"');
+        $query = $this->link->query('SELECT * FROM `model` WHERE m_username="$username" AND m_label="$label"');
         $counts = $query->rowCount();
         if($counts >=1){
             $result = $query->fetchAll();
@@ -33,9 +33,9 @@ class ManageModel{
         }
         return $result;
     }
-    function countModel($username,$status)
+    function countModel($username,$label)
     {
-        $query = $this->link->prepare('SELECT count(*) AS TOTAL_MODEL FROM `model` WHERE m_username="$username" AND m_status="Status"');
+        $query = $this->link->prepare('SELECT count(*) AS TOTAL_MODEL FROM `model` WHERE m_username="$username" AND m_label="label"');
         $query->fetchAll(PDO::FETCH_OBJ);
         $counts = $query->fetchAll();
         return $counts;

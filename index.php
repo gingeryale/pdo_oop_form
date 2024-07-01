@@ -1,7 +1,7 @@
 <?php
-include_once('libs/login_users.php');
-session_start();
 include_once('includes/header.php');
+include_once('libs/login_users.php');
+
 ?>
 
 <body>
