@@ -20,9 +20,15 @@ class ManageModel{
        $counts=$query->rowCount();
        return $counts;
     }
-    function listModel($username,$label)
+    function listModel($username,$label=null)
     {
+        if(isset($label)){
         $query = $this->link->query('SELECT * FROM `model` WHERE m_username="$username" AND m_label="$label"');
+        }
+        else
+        {
+            $query = $this->link->query('SELECT * FROM `model` WHERE m_username="$username"');
+        }
         $counts = $query->rowCount();
         if($counts >=1){
             $result = $query->fetchAll();
