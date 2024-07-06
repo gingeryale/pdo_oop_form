@@ -20,10 +20,10 @@ class ManageModel{
        $counts=$query->rowCount();
        return $counts;
     }
-    function listModel($username,$label=null)
+    function listModel($username_id,$label=null)
     {
         if(isset($label)){
-        $query = $this->link->query('SELECT * FROM `model` WHERE m_username="$username" AND m_label="$label"');
+        $query = $this->link->query('SELECT * FROM `model` WHERE m_username="$username_id" AND m_label="$label"');
         }
         else
         {

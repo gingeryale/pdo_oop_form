@@ -1,6 +1,6 @@
 <?php
 
- include_once('class.ManageUsers.php');
+ include_once('../class.ManageUsers.php');
 
 if(isset($_POST['register']))
 {
@@ -38,6 +38,7 @@ if(isset($_POST['register']))
                 foreach($make_sessions as $userSessions)
                 {
                     $_SESSION['tutlage'] = $userSessions['u_name'];
+                   
                     if(isset($_SESSION['tutlage'])){
                         header("location: index.php");
                     }
@@ -81,7 +82,7 @@ if(isset($_POST['login']))
             echo 'great';
             $make_sessions = $user->getExistingUserData($email);
             foreach($make_sessions as $userSession){
-                $_SESSION['tutlage'] = $userSession['u_name'];
+                $_SESSION['tutlage'] = $userSession['u_email'];
                 if(isset($_SESSION['tutlage']))
                 {
                     header("location: index.php");
